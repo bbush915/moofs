@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package moofs.api;
+
+service Game {
+  rpc GetQuestion(GetQuestionRequest) returns (GetQuestionResponse);
+  rpc AnswerQuestion(AnswerQuestionRequest) returns (AnswerQuestionResponse);
+}
+
+message GetQuestionRequest {
+  string player_id = 1;
+}
+
+message GetQuestionResponse {
+  string id = 1;
+  string category = 2;
+  string difficulty = 3;
+  string question = 4;
+  repeated string choices = 5;
+}
+
+message AnswerQuestionRequest {
+  string id = 1;
+  string answer = 2;
+}
+
+message AnswerQuestionResponse {
+  bool correct = 1;
+  int32 time_elapsed = 2;
+}

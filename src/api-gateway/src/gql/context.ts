@@ -1,15 +1,21 @@
 import { ChannelCredentials } from "@grpc/grpc-js";
-import { promisify } from "util";
 
-import { IPlayerClient, PlayerClient } from "../../../../protos/api/player_grpc_pb";
-import { IRankClient, RankClient } from "../../../../protos/api/rank_grpc_pb";
+import { GameClient } from "../../../../protos/api/game_grpc_pb";
+import { PlayerClient } from "../../../../protos/api/player_grpc_pb";
+import { RankClient } from "../../../../protos/api/rank_grpc_pb";
 
 export interface IContext {
+  gameClient: GameClient;
   playerClient: PlayerClient;
   rankClient: RankClient;
 }
 
 export const context = (): IContext => {
+  const gameClient = new GameClient(
+    process.env.GAME_SERVICE_ADDRESS!,
+    ChannelCredentials.createInsecure()
+  );
+
   const playerClient = new PlayerClient(
     process.env.PLAYER_SERVICE_ADDRESS!,
     ChannelCredentials.createInsecure()
@@ -21,6 +27,7 @@ export const context = (): IContext => {
   );
 
   return {
+    gameClient,
     playerClient,
     rankClient,
   };

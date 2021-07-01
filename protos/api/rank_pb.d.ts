@@ -101,6 +101,49 @@ export namespace GetRankResponse {
     }
 }
 
+export class GrantPointsRequest extends jspb.Message { 
+    getPlayerId(): string;
+    setPlayerId(value: string): GrantPointsRequest;
+    getValue(): number;
+    setValue(value: number): GrantPointsRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GrantPointsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GrantPointsRequest): GrantPointsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GrantPointsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GrantPointsRequest;
+    static deserializeBinaryFromReader(message: GrantPointsRequest, reader: jspb.BinaryReader): GrantPointsRequest;
+}
+
+export namespace GrantPointsRequest {
+    export type AsObject = {
+        playerId: string,
+        value: number,
+    }
+}
+
+export class GrantPointsResponse extends jspb.Message { 
+    getSuccess(): boolean;
+    setSuccess(value: boolean): GrantPointsResponse;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GrantPointsResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: GrantPointsResponse): GrantPointsResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GrantPointsResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GrantPointsResponse;
+    static deserializeBinaryFromReader(message: GrantPointsResponse, reader: jspb.BinaryReader): GrantPointsResponse;
+}
+
+export namespace GrantPointsResponse {
+    export type AsObject = {
+        success: boolean,
+    }
+}
+
 export class AdvanceRankRequest extends jspb.Message { 
     getPlayerId(): string;
     setPlayerId(value: string): AdvanceRankRequest;

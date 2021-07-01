@@ -9,6 +9,8 @@ import {
   AdvanceRankResponse,
   GetRankRequest,
   GetRankResponse,
+  GrantPointsRequest,
+  GrantPointsResponse,
   InitRankRequest,
   InitRankResponse,
 } from "../../../protos/api/rank_pb";
@@ -83,6 +85,34 @@ export const RankServerImpl: IRankServer = {
         .setNextRank(nextRank?.name)
         .setRequiredPoints(nextRank?.cost);
 
+      callback(null, response);
+    })();
+  },
+
+  grantPoints: (
+    { request }: ServerUnaryCall<GrantPointsRequest, GrantPointsResponse>,
+    callback: sendUnaryData<GrantPointsResponse>
+  ): void => {
+    (async () => {
+      const playerId = request.getPlayerId();
+      const value = request.getValue();
+
+      const playerRank = await db("player_ranks").where("player_id", "=", playerId).first();
+
+      if (!playerRank) {
+        callback({
+          code: status.NOT_FOUND,
+          message: `Player is not ranked`,
+        });
+
+        return;
+      }
+
+      await db("player_ranks")
+        .where("player_id", "=", playerId)
+        .update({ points: Math.max(0, playerRank.points + value) });
+
+      const response = new GrantPointsResponse().setSuccess(true);
       callback(null, response);
     })();
   },

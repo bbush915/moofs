@@ -48,6 +48,28 @@ function deserialize_moofs_api_GetRankResponse(buffer_arg) {
   return api_rank_pb.GetRankResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_moofs_api_GrantPointsRequest(arg) {
+  if (!(arg instanceof api_rank_pb.GrantPointsRequest)) {
+    throw new Error('Expected argument of type moofs.api.GrantPointsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_moofs_api_GrantPointsRequest(buffer_arg) {
+  return api_rank_pb.GrantPointsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_moofs_api_GrantPointsResponse(arg) {
+  if (!(arg instanceof api_rank_pb.GrantPointsResponse)) {
+    throw new Error('Expected argument of type moofs.api.GrantPointsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_moofs_api_GrantPointsResponse(buffer_arg) {
+  return api_rank_pb.GrantPointsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_moofs_api_InitRankRequest(arg) {
   if (!(arg instanceof api_rank_pb.InitRankRequest)) {
     throw new Error('Expected argument of type moofs.api.InitRankRequest');
@@ -93,6 +115,17 @@ var RankService = exports.RankService = {
     requestDeserialize: deserialize_moofs_api_GetRankRequest,
     responseSerialize: serialize_moofs_api_GetRankResponse,
     responseDeserialize: deserialize_moofs_api_GetRankResponse,
+  },
+  grantPoints: {
+    path: '/moofs.api.Rank/GrantPoints',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_rank_pb.GrantPointsRequest,
+    responseType: api_rank_pb.GrantPointsResponse,
+    requestSerialize: serialize_moofs_api_GrantPointsRequest,
+    requestDeserialize: deserialize_moofs_api_GrantPointsRequest,
+    responseSerialize: serialize_moofs_api_GrantPointsResponse,
+    responseDeserialize: deserialize_moofs_api_GrantPointsResponse,
   },
   advanceRank: {
     path: '/moofs.api.Rank/AdvanceRank',
