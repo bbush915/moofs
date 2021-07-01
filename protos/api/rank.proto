@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package moofs.api;
+
+service Rank {
+  rpc InitRank(InitRankRequest) returns (InitRankResponse);
+  rpc GetRank(GetRankRequest) returns (GetRankResponse);
+  rpc AdvanceRank(AdvanceRankRequest) returns (AdvanceRankResponse);
+}
+
+message InitRankRequest {
+  string player_id = 1;
+}
+
+message InitRankResponse {
+  bool success = 1;
+}
+
+message GetRankRequest {
+  string player_id = 1;
+}
+
+message GetRankResponse {
+  string current_rank = 1;
+  int32 current_points = 2;
+  optional string next_rank = 3;
+  optional int32 required_points = 4;
+}
+
+message AdvanceRankRequest {
+  string player_id = 1;
+}
+
+message AdvanceRankResponse {
+  bool success = 1;
+}

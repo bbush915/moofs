@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package moofs.api;
+
+service Player {
+  rpc RegisterPlayer(RegisterPlayerRequest) returns (RegisterPlayerResponse);
+  rpc GetPlayer(GetPlayerRequest) returns (GetPlayerResponse);
+}
+
+message RegisterPlayerRequest {
+  string username = 1;
+}
+
+message RegisterPlayerResponse {
+  string id = 1;
+}
+
+message GetPlayerRequest {
+  string id = 1;
+}
+
+message GetPlayerResponse {
+  string id = 1;
+  string created_at = 2;
+  string updated_at = 3;
+  string username = 4;
+}
